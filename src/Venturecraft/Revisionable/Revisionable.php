@@ -148,7 +148,6 @@ class Revisionable extends Eloquent
                     'new_value'             => $this->updatedData[$key],
                     'user_id'               => $this->getSystemUserId(),
                     'created_at'            => new \DateTime(),
-                    'updated_at'            => new \DateTime(),
                 );
             }
 
@@ -183,7 +182,6 @@ class Revisionable extends Eloquent
                 'new_value' => $this->{self::CREATED_AT},
                 'user_id' => $this->getSystemUserId(),
                 'created_at' => new \DateTime(),
-                'updated_at' => new \DateTime(),
             );
 
             $revision = new Revision;
@@ -208,7 +206,6 @@ class Revisionable extends Eloquent
                 'new_value' => $this->{$this->getDeletedAtColumn()},
                 'user_id' => $this->getSystemUserId(),
                 'created_at' => new \DateTime(),
-                'updated_at' => new \DateTime(),
             );
             $revision = new \Venturecraft\Revisionable\Revision;
             \DB::table($revision->getTable())->insert($revisions);

@@ -103,7 +103,7 @@ trait RevisionableTrait
     public static function classRevisionHistory($limit = 100, $order = 'desc')
     {
         return \Venturecraft\Revisionable\Revision::where('revisionable_type', get_called_class())
-            ->orderBy('updated_at', $order)->limit($limit)->get();
+            ->orderBy('created_at', $order)->limit($limit)->get();
     }
 
     /**
@@ -183,7 +183,6 @@ trait RevisionableTrait
                     'new_value' => $this->updatedData[$key],
                     'user_id' => $this->getSystemUserId(),
                     'created_at' => new \DateTime(),
-                    'updated_at' => new \DateTime(),
                 );
             }
 
@@ -225,7 +224,6 @@ trait RevisionableTrait
                 'new_value' => $this->{self::CREATED_AT},
                 'user_id' => $this->getSystemUserId(),
                 'created_at' => new \DateTime(),
-                'updated_at' => new \DateTime(),
             );
 
             $revision = new Revision;
@@ -252,7 +250,6 @@ trait RevisionableTrait
                 'new_value' => $this->{$this->getDeletedAtColumn()},
                 'user_id' => $this->getSystemUserId(),
                 'created_at' => new \DateTime(),
-                'updated_at' => new \DateTime(),
             );
             $revision = new \Venturecraft\Revisionable\Revision;
             \DB::table($revision->getTable())->insert($revisions);
