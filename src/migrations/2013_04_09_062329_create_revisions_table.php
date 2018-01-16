@@ -15,11 +15,11 @@ class CreateRevisionsTable extends Migration
             $table->increments('id');
             $table->string('revisionable_type');
             $table->integer('revisionable_id');
-            $table->integer('user_id')->nullable();
+            $table->string('user_id')->nullable();
             $table->string('key');
             $table->text('old_value')->nullable();
             $table->text('new_value')->nullable();
-            $table->timestamps();
+            $table->dateTime('created_at');
 
             $table->index(array('revisionable_id', 'revisionable_type'));
         });
